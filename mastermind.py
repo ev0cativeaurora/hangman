@@ -108,3 +108,26 @@ def check_guess(secret, guess):
             secret_remaining.remove(color)
 
     return (blacks, whites)
+
+
+
+def game():
+    secret = generate_secret_code()
+    print("Secret code has 4 colors. Available colors: red, blue, green, yellow, black, white.")
+    attempts_left = MAX_ATTEMPTS
+
+    while attempts_left > 0:
+        guess = get_player_guess()
+        attempts_left -= 1
+
+        blacks, whites = check_guess(secret, guess)
+        print(f"Result for your guess: {blacks} black(s), {whites} white(s)")
+
+        if blacks == 4:
+            print("You guessed the entire code!")
+            return True
+
+        print(f"Attempts left: {attempts_left}\n")
+
+    print(f"No attempts left! You lose. The secret was {secret}.")
+    return False
