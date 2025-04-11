@@ -202,3 +202,11 @@ def play_again():
         return False
 
 
+def scores():
+    """
+    Displays the accumulated scores for the player and the computer.
+    """
+    global player_score, computer_score
+    print("HIGH SCORES")
+    print("Player:", player_score)
+    print("Computer:", computer_score)
