@@ -10,4 +10,14 @@ def start():
     """
     print("Welcome to Mastermind!")
     print(f"You have {MAX_ATTEMPTS} attempts to guess the secret code.")
-    # We'll implement the game loop in the next step.
+
+
+def generate_secret_code():
+    """
+    Generate a list of 4 random colors (from a set of 6).
+    Example colors: ["red", "blue", "green", "yellow", "black", "white"]
+    """
+    colors = ["red", "blue", "green", "yellow", "black", "white"]
+    code = [random.choice(colors) for _ in range(4)]
+    return code
+
