@@ -79,3 +79,32 @@ def get_player_guess():
             continue
 
         return guess_list
+
+
+def check_guess(secret, guess):
+    """
+    Returns (blacks, whites) for the guess compared to the secret.
+    - blacks = # of positions that match exactly
+    - whites = # of correct colors but in wrong positions
+    """
+    # Step 1: count blacks
+    blacks = 0
+    secret_remaining = []
+    guess_remaining = []
+
+    for s, g in zip(secret, guess):
+        if s == g:
+            blacks += 1
+        else:
+            secret_remaining.append(s)
+            guess_remaining.append(g)
+
+    # Step 2: count whites
+    whites = 0
+    # For each color in guess_remaining, if it's in secret_remaining, count it and remove one occurrence
+    for color in guess_remaining:
+        if color in secret_remaining:
+            whites += 1
+            secret_remaining.remove(color)
+
+    return (blacks, whites)
