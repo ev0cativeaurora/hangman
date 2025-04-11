@@ -21,3 +21,37 @@ def generate_secret_code():
     code = [random.choice(colors) for _ in range(4)]
     return code
 
+
+
+def game():
+    """
+    Runs one round of Mastermind.
+      - Generates a secret code
+      - Loops up to MAX_ATTEMPTS
+      - Asks player for a combination
+      - Gives feedback (to be implemented) 
+      - Ends when player guesses the code or runs out of attempts
+    """
+    secret = generate_secret_code()
+    print("Secret code has 4 colors. Available colors: red, blue, green, yellow, black, white.")
+    # For debug, you could print the secret code:
+    # print(f"[DEBUG] The secret is: {secret}")
+
+    attempts_left = MAX_ATTEMPTS
+    while attempts_left > 0:
+        guess = get_player_guess()
+        # We'll implement a function to compare guess vs secret soon
+        # For now, just reduce attempts by 1
+        attempts_left -= 1
+
+        # If guess is the secret, break
+        # We'll do a real check in next step
+        if guess == secret:  # placeholder logic
+            print("You guessed exactly (placeholder check)!")
+            return True  # or some victory condition
+
+        print(f"Attempts left: {attempts_left}")
+
+    # If we exit the loop, we ran out of attempts
+    print("No attempts left. You lose. (placeholder)")
+    return False
