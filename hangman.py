@@ -188,3 +188,17 @@ def guess_letter():
     letter = letter.strip().lower()
     return letter
 
+def play_again():
+    """
+    Asks the user if they want to play again.
+    Returns True if yes, False otherwise.
+    """
+    print("")
+    answer = input("Would you like to play again? y/n: ").lower().strip()
+    if answer in ("y", "yes"):
+        return True
+    else:
+        print("Thank you for playing my game. See you next time!")
+        return False
+
+
