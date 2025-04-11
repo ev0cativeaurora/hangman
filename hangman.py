@@ -179,3 +179,12 @@ def game():
 
     return play_again()
 
+
+def guess_letter():
+    """
+    Prompts the user for a guess and returns it in lowercase, stripped of whitespace.
+    """
+    letter = input("\nGuess a letter: ")
+    letter = letter.strip().lower()
+    return letter
+
