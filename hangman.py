@@ -112,3 +112,70 @@ def start():
     # After exiting the loop, show final scores
     print("")
     scores()
+
+def game():
+    """
+    One round of Hangman:
+      - Picks a random word
+      - Asks the player to guess letters
+      - Tracks correct/incorrect guesses
+      - Shows ASCII gallows
+      - Returns True if player wants to play again, False otherwise
+    """
+    the_word = word()
+    print("The word has {} letters.".format(len(the_word)))
+
+    clue = ["-" for _ in the_word]
+    print("")
+    print("".join(clue))
+
+    tries = 6
+    letters_tried = ""
+    letters_wrong = 0
+
+    global player_score, computer_score
+
+    while letters_wrong < tries and "".join(clue) != the_word:
+        letter = guess_letter()
+
+        if len(letter) == 1 and letter.isalpha():
+            if letters_tried.find(letter) != -1:
+                print(f"You've already picked '{letter}'. Please choose another letter.")
+                # Continue the loop without penalizing the user
+                continue
+            else:
+                letters_tried += letter
+                # Check if the guess is in the word
+                if letter in the_word:
+                    print(f"Yay! {letter} is correct.")
+                    for i in range(len(the_word)):
+                        if the_word[i] == letter:
+                            clue[i] = letter
+                else:
+                    letters_wrong += 1
+                    print(f"Sorry, there isn't any '{letter}' in the word.")
+        else:
+            print("Please enter exactly one alphabetic character.")
+            # Continue without penalizing
+            continue
+
+        # Display ASCII gallows, current clue, and guesses so far
+        print(hanged(letters_wrong))
+        print("".join(clue))
+        print("")
+        print("Guesses so far:", letters_tried)
+
+        if letters_wrong == tries:
+            print("Game Over!")
+            print(f"The word was '{the_word}'")
+            computer_score += 1
+            break
+
+        if "".join(clue) == the_word:
+            print("You Win!")
+            print(f"The word was '{the_word}'")
+            player_score += 1
+            break
+
+    return play_again()
+
