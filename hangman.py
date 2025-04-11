@@ -210,3 +210,8 @@ def scores():
     print("HIGH SCORES")
     print("Player:", player_score)
     print("Computer:", computer_score)
+
+
+# Start game
+if __name__ == "__main__":
+    start()
