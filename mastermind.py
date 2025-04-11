@@ -55,3 +55,27 @@ def game():
     # If we exit the loop, we ran out of attempts
     print("No attempts left. You lose. (placeholder)")
     return False
+
+
+
+def get_player_guess():
+    """
+    Prompts the user to enter 4 colors separated by spaces.
+    Returns a list of colors in lowercase.
+    """
+    while True:
+        raw_input = input("Enter your 4 colors (e.g. 'red blue green yellow'): ").strip().lower()
+        guess_list = raw_input.split()
+
+        if len(guess_list) != 4:
+            print("Please enter exactly 4 colors.")
+            continue
+
+        # Optional: validate each color is in the allowed set
+        allowed = {"red", "blue", "green", "yellow", "black", "white"}
+        invalid = [color for color in guess_list if color not in allowed]
+        if invalid:
+            print(f"Invalid colors: {invalid}. Allowed: {allowed}")
+            continue
+
+        return guess_list
